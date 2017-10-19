@@ -1,0 +1,22 @@
+<div  class="row allExpProj">
+  <div id="{{tile.id}}" ng-repeat="tile in cv.allExps" class="card small " >
+    <div class="center ">
+      <div class="card-image small waves-effect waves-block waves-light" ng-click="detail(tile.id)">
+        <img class="activator" ng-src="{{tile.img}}" >
+      </div>
+    </div>
+    <div class="card-content blue lighten-5 z-depth-1" >
+      <p class="card-title activator grey-text text-darken-4 "  ng-click="detail(tile.id)">{{ tile.poste }} chez {{tile.company}}</p>
+      <p class="light-text"><i class="material-icons tiny">label_outline</i>{{tile.date}}, {{tile.duration}}</p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4 blue lighten-5"  ng-click="detail(tile.id)">{{ tile.poste }} chez {{tile.company}}<i class="material-icons right" >close</i></span>
+      <p>@ {{tile.location}}</p>
+      <pre>{{tile.description}}</pre>
+      <p ng-if="tile.link.name != '' ">{{tile.link.name}} <a href="{{tile.link.link}}" target="_blank">lien</a></p>
+      <p><a ng-if="tile.include == true" ng-href="#!/experiences/{{tile.id}}" class="btn orange" >Plus</a></p>
+      <div class="divider" style="margin-bottom:0.5rem;"></div>
+      <div ng-repeat='skill in tile.skills' ><a ng-href='#!/skills/{{cv.allSkills.items[skill].id}}' ><div class="chip col chip-skill " ng-class='cv.allSkills.items["{{skill}}"].color+4'>{{skill}}</div></a></div>
+    </div>
+  </div>
+</div>

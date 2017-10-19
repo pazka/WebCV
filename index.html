@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- Made with AngularJS and Materialize -->
+<!-- TODO :
+Correct the overlapping experiences and tiles and the contact dpcontent
+
+details of currents projects
+put all projects
+details of all remaining projects
+make mobile version
+-->
+<html >
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="description" content="CV interactif d'Alexandre Weisser, sa formation, ses expériences, ses projets, ses compétences et sa personnalité !"/>
+  <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+  <title>Alexandre Weisser - Développeur Informatique</title>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><!--icons-->
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/animations.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+
+<body  class="row" ng-app ="CV">
+  <p id="disclaimer" class=" blue lighten-5 z-depth-1">___[ Work In Progress ]___     Alexandre Weisser - 2017 - Tous droits réservés</p>
+
+    <!-- NavBar -->
+      <ul class="col s2 navBar">
+        <div class ="me">
+          <li><a  target="_blank"><img class="profile-pic  responsive-img"  src="./resources/picsmall.png"></a></li>
+          <strong class="name">Alexandre Weisser</strong>
+          <div class="row btns">
+            <a class='dropdown-button btn orange lighten-1 col s8 ' data-activates='dropdown1'><i class="material-icons right">keyboard_arrow_right</i>Contacts</a>
+            <a href="./resources/cv.pdf" target="_blank"><div  class="btn col s3 offset-s1 blue lighten-2">C.V.</div></a>
+          </div>
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' class='dropdown-content orange lighten-5 z-depth-5 round' >
+            <li class="contact-item"><a href="mailto:contact@alexandreweisser.pro"><i class="material-icons">email</i>contact@alexandreweisser.pro</a></li>
+            <div class="divider"></div>
+            <li class="contact-item"><i class="material-icons">contact_phone</i>06.27.11.86.89</li>
+            <div class="divider"></div>
+            <li class="contact-item"><i class="material-icons">home</i>59 Rue Saint Aloise,<br/> 67100 Strasbourg</li>
+        </ul>
+        </div>
+        <ul class="nav">
+          <a class="waves-effect waves-orange navItem z-depth-1  dezoom black-text" href="#!/training">    <li >        Formation   </li></a>
+          <a class="waves-effect waves-orange navItem z-depth-1  dezoom black-text" href="#!/skills">      <li >       Compétences  </li></a>
+          <a class="waves-effect waves-orange navItem z-depth-1  dezoom black-text" href="#!/experiences"> <li >       Expériences  </li></a>
+          <a class="waves-effect waves-orange navItem z-depth-1  dezoom black-text" href="#!/projects">    <li >        Projets     </li></a>
+          <a class="waves-effect waves-orange navItem z-depth-1  dezoom black-text" href="#!/about">       <li >        À propos    </li></a>
+        </ul>
+      </ul>
+
+    <!-- Content -->
+      <main class="col s10 right"  ng-view> <!-- ui-view purpose is to indicate where to put the partial -->
+
+      </main>
+</body>
+
+<!--  Scripts-->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+<script src="js/angular-router.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/factories.js"></script>
+<script src="js/CV.js"></script>
+<script src="js/projectExps.js"></script>
+<script src="js/init.js"></script>
+</html>

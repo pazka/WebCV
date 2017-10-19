@@ -1,0 +1,443 @@
+﻿{
+	"allTrainings": [{
+		"id": "matinfo",
+		"name": "Licence de Mathématique et d'Informatique (L2S4)",
+		"location": "Université de Strasbourg - Faculté de Mathématique et d'Informatique, 68700 Strasbourg",
+		"date": "2016",
+		"duration": "6 mois",
+		"link": "http://iutrs.unistra.fr/",
+		"skills": ["C","Programmation Orientée Objet","Optimisation","Teamwork"],
+		"description": "Débutée en milieu de de 2ème année et a pris fin à la fin du premier semestre. Ce passage à la faculté a été l'occasion pour moi d'approfondir l'aspect optimisation, logique et théorique de l'informatique, jusqu'alors négligé par le DUT. J'ai décidé d'arrêter après le prmeier semestre (validé) car les valeurs et philosophie de travail de la faculté ne correspondait pas avec ce que j'estimais être une vrai formation. J'ai mis a profits le deuxième semestre pour m'enrichir personnellement par des projets divers comprenants développement web, local et de systèmes embarqués"
+	},{
+		"id": "dut",
+		"name": "DUT Informatique",
+		"location": "IUT Robert SCHUMAN, 67411 Illkirch",
+		"date": "2016",
+		"duration": "2 ans",
+		"link": "http://iutrs.unistra.fr/",
+		"skills": ["C#", "C", "Java", "Python", "Javascript", "Php",
+			"ShellScript", "Html", "Css", "PL-SQL", "SQL",
+			"UML", "Unix", "Visual Studio", "Git", "Windows", "Apache2",
+			"MySql", "Raspbian", "Android Studio",
+			"Oracle JDeveloper", "NodeJS", "JQuery", "AngularJS",
+			"Express", "Materialize", "Sequelize", "Economie de Base", "Communication",
+			"Anglais", "Gestion de projet", "Teamwork", "Administration Réseaux Unix"
+		],
+		"description": "Ce DUT a été l'élément fondateur de ma formation. Il m'a fait découvrir toute les possiblités qu'offre l'informatique et m'a donné envie de creuser toujours plus loin pour en apprendre plus.\nLe travail d'équipe était un élément clef durant cette formation et j'ai pu pleinement m'y éxercer grâce à la trentaine de projets que nous avons réalisé et mon rôle de président de l'amicale étudiante pendant mes études."
+	}, {
+		"id": "toeic",
+		"name": "TOEIC Anglais",
+		"location": "IUT Robert SCHUMAN- 67411 Illkirch",
+		"date": "2016",
+		"duration": "Examen",
+		"link": "http://www.ets.org/toeic/",
+		"skills": ["Anglais"],
+		"description": "Note : 900/990"
+	}, {
+		"id": "c2i",
+		"name": "Certificat Informatique et Internet",
+		"date": "2015",
+		"link": "https://c2i.unistra.fr/",
+		"duration": "Examen",
+		"location": "Université de Strasbourg",
+		"skills": ["Bureautique"],
+		"description": "Ecrit - Certification de Compétence en Bureautique."
+	}, {
+		"id": "bac",
+		"name": "Bac Scientifique - Science de l'Ingénieur",
+		"location": "Lycée Théodore Deck, 68500 Guebwiller",
+		"date": "2014",
+		"duration": "3 ans",
+		"link": "http://lyceedeck.fr/",
+		"skills": ["Anglais", "C", "Qt", "Javascript", "Php",
+			"C++", "Html", "Css", "Teamwork"
+		],
+		"description": "Formation durant laquelle ma passion pour l'Informatique a débuté. Découvertes des rouages et bonnes pratiques d'un projet informatique/éléctronique en groupe. Mention Assez Bien."
+	}],
+
+
+
+
+	"allExps": [{
+		"id": "windriver",
+		"poste": "Stagiaire",
+		"date": "Avril 2016",
+		"duration": "10 semaines",
+		"company": "Windriver Systems SRL",
+		"img": "http://www.windriver.com/resources/images/wr-logo-red.png",
+		"location": "800010 Galati Romania",
+		"skills": ["Android Studio", "Java", "Git", "Anglais", "Teamwork","Adaptabilité"],
+		"description": "            Stage obligatoire en fin de DUT que j'ai effectué à l'étranger. Cela m'a permit de pleinement pratiquer mon anglais et me mettre en condition de travail au sein d'une équipe professionnelle.\n\n            J'ai eu l'occasion de développer un outil de test sous android ainsi que d'y programmer des tests automatiques. De plus, j'ai passé beaucoup de temps à analyser et comprendre le fonctionnement d'une aussi grande entreprise, et comment s'articulaient les projets.\n\n            Au moment de mon arrivé dans l'équipe, j'ai du faire preuve d'adaptbilité afin de m'intégrer au sein d'une équipe avec des moeurs totalement différents de ce dont j'ai l'habitude jusqu'alors, cet aspect de mon stage a été parfaitement éxécuté.",
+		"include": true,
+		"link":{"name":"Rapport détaillé de mon expérience :","link":"./resources/WeisserWindRiverRapport.pdf"}
+	},{
+		"id": "core",
+		"poste": "Président",
+		"date": "Mars 2015",
+		"duration": "1 an",
+		"company": "Amicale CORE",
+		"img": "./resources/core.jpg",
+		"location": "IUT Robert SCHUMAN, 67411 Illkirch",
+		"skills": ["Teamwork"],
+		"description": "        Président d'une association étudiantes de 15 membres s'occupant du bien-être étudiant de 250 élèves à travers l'organisation d'évènements de toute sortes. Ce fût ma première expérience \"à responsabilité\" grâce à laquelle j'ai pu acquérir des compétences en gestion d'équipe et de conflit. ",
+		"include": false,
+		"link":{"name":"Page facebook de l'amicale CORE","link":"https://www.facebook.com/iutcore/"}
+	}, {
+		"id": "laposte",
+		"poste": "Facteur intérimaire",
+		"date": "Juillet 2015",
+		"duration": "2 semaines",
+		"company": "La Poste",
+		"img": "https://upload.wikimedia.org/wikipedia/fr/thumb/2/2a/Logo-laposte.png/220px-Logo-laposte.png",
+		"location": "68376 Wittenheim",
+		"skills": ["Adaptabilité","Réactivité"],
+		"description": "Mission de terrain, l'adaptabilité et la réactivité étaient de mise.",
+		"include": false,
+		"link":{"name":"","link":""}
+	}, {
+		"id": "sojinal",
+		"poste": "Intérimaire",
+		"date": "Juillet 2014",
+		"duration": "8 semaines",
+		"company": "Sojinal - Alpro Soja",
+		"img": "http://3.bp.blogspot.com/-_XTOyLTWs7Y/T-rXFot1lyI/AAAAAAAAQcw/Zqum6KR19xI/s1600/LogoAlproSoyaCMYK.jpg",
+		"location": "68203 Merxheim",
+		"skills": ["Teamwork","Adaptabilité"],
+		"description": "Principalement de la manutention. Le plus important était de communiquer un maximum avec l'équipe afin de s'integrer le plus rapidement possible à la mentalité des employés et à l'esprit d'entreprise.",
+		"include": false,
+		"link":{"name":"","link":""}
+	}, {
+		"id": "bunker",
+		"poste": "Intérimaire",
+		"date": "Juillet 2012",
+		"duration": "2 semaines",
+		"company": "Commune de Cernay",
+		"img": "http://www.lesvitrinesdecernay.com/images/logos/MAIRIE-CERNAY.jpg",
+		"location": "68700 Cernay",
+		"skills": [],
+		"description": "Principalement du gros oeuvre dans la rénovation de bunker datant de la guerre. En équipe avec des personnes de millieux sociaux totalement différents ce qui a requis un effort de flexibilité afin d'accomplir la mission au mieux.",
+		"include": false,
+		"link":{"name":"Article de l'ogranisme d'acceuil : ","link":"http://www.ahwk.fr/chantier-jeunes-cernay-2012/"}
+	}, {
+		"id": "facilordi",
+		"poste": "Stagiaire",
+		"date": "Juillet 2011",
+		"duration": "2 semaines",
+		"company": "Facil'Ordi",
+		"img": "http://t2.gstatic.com/images?q=tbn:ANd9GcQTNLL2Pj41wk3-mhxav6pfhLTyCmpPXRqUa6-yQ8Ts5DcCP5eEkFXiiVY",
+		"location": "68700 Cernay",
+		"skills": ["Adaptabilité","Teamwork"],
+		"description": "Ce fût ma première approche avec le monde du travail informatique. J'ai pu observer le fonctionnement d'une petite société et la relation que cette dernière avait avec ses clients.",
+		"include": true,
+		"link":{"name":"Site officiel","link":"http://facilordi.com/"}
+	}],
+
+	"allProjects": [{
+		"id": "kintama",
+		"name": "Kintama",
+		"img":"./resources/Kintama_model.png",
+		"date":"2015",
+		"duration":"3 mois",
+		"shortDesc": "Un assistant autonome et portatif, commandé oralement, interagissant avec différentes API et doté de pseudo-émotions.\n        Réalisé en équipe de 7 dont j'étais le chef d'équipe.",
+		"skills": ["Python", "Javascript", "Php", "Unix", "Électronique Basique", "Teamwork"],
+		"include": true,
+		"complexity": "8"
+	},{
+		"id": "coreweb",
+		"name": "Core_Web",
+		"img":"./resources/coreweb.png",
+		"date":"2017",
+		"duration":"3 mois",
+		"shortDesc": "Un simili-ERP facilitant l'utilisation, la gestion et le suivi de la caisse de l'association ainsi que le paiement des membres. Inclu une gestion de paniers et d'argent virtuel avec réservation et paiement en différé.",
+		"skills": ["Javascript","NodeJS","Bootstrap","Sequelize","Express"],
+		"include": false,
+		"link":{"name":"Résultat final","link":"http://www.amicale-core.fr/"},
+		"complexity": "8"
+	},{
+		"id": "fdlm",
+		"name": "Fête de la musique",
+		"img":"./resources/fdlm.jpg",
+		"date":"2017",
+		"duration":"2H",
+		"shortDesc": "Une mini-app publique ayant pour but de me faciliter les déplacements durant la fête de la musique de 2017",
+		"skills": ["Javascript"],
+		"include": false,
+		"link":{"name":"App","link":"http://alexandreweisser.pro/FM2017/"},
+		"complexity": "1"
+	},{
+		"id": "arcane",
+		"name": "Arcane",
+		"img":"./resources/arcane.png",
+		"date":"2017",
+		"duration":"1 mois",
+		"shortDesc": "Site artisitique de présentation du travail d'Alessia Sanna. Il sagit d'une modélisation sous la forme de molécule de différents projets réalisé dans la même démarche. Les éléments graphique on été créer par l'artiste puis intégré au site.\n Chaque atomes représente un aspect du projet et appartient à un tableau périodique créé spécifiquement pour cette présentation. Le site en lui même est un projet artistique de Mme Sanna.",
+		"skills": ["P5js","Html", "Css", "Javascript", "AngularJS","Bootstrap","Adaptabilité"],
+		"include": true,
+		"complexity": "6",
+		"link":{"name":"Site de présentation","link":"http://alessiasanna.fr/"}
+	},{
+		"id": "IDO",
+		"name": "IDO",
+		"img":"./resources/ido.jpg",
+		"date":"2017",
+		"duration":"2 semaines",
+		"shortDesc": "Application Android permettant de se connecter à différentes enceintes Bluetooth grâce à leurs adresse MAC et leur faire jouer un son spécifique à chaque enceinte. La sélction des son se faisait sur une carte de strasbourg contenant des boutons (spécifiques aux enceintes). Cette application a fait partie d'une installation artistique interactive d'Alessia Sanna.",
+		"skills": ["Android Studio", "Java","Adaptabilité"],
+		"include": true,
+		"complexity": "6",
+		"link":{"name":"Présentation du projet","link":"http://alessiasanna.fr/Arcane/projet/#/IDO"}
+	},{
+		"id": "lab",
+		"name": "Génération et résolution de labyrinthe",
+		"img":"./resources/lab.png",
+		"date":"2016",
+		"duration":"3 mois",
+		"shortDesc": "        Création de deux librairies .C : une de gérant des ensembles de couples d'entiers et une gérant des matrices. Puis un programme générant un labyrinthe et un programme trouvant le chemin le plus rapide en utilisant l'algorithme A*.\n Le tout de manière __optimisée__ grâce à différentes structures de données.        .",
+		"skills": ["C", "Optimisation"],
+		"include": true,
+		"complexity": "6"
+	}, {
+		"id": "braille",
+		"name": "Imprimante Braille",
+		"img":"./resources/braille.png",
+		"date":"2014",
+		"duration":"6 mois",
+		"shortDesc": "Une imprimante capable d'imprimer sur une bande de papier A4, en longueur, une série de caractères brailles en reliefs.\n        Réalisé en équipe de 5.",
+		"skills": ["C", "Électronique Basique", "Raspbian", "Teamwork"],
+		"include": true,
+		"complexity": "4"
+	}, {
+		"id": "rogue",
+		"name": "Rogue Unlike",
+		"img":"./resources/rogueunlike.png",
+		"date":"2015",
+		"duration":"1 mois",
+		"shortDesc": "Un mini-jeu RogueLike qui a nécessité la modélisation de toutes les classes (23) et d'un pattern récursif pour la génération d'un système de caves. Il également fallu programmer l'IHM grâce à Swing.\n Réalisé en équipe de 2.",
+		"skills": ["UML", "Java", "Oracle JDeveloper", "Teamwork"],
+		"include": false,
+		"complexity": "5"
+	}, {
+		"id": "testapp",
+		"name": "Application Android de test de son",
+		"img":"./resources/appSound.png",
+		"date":"2016",
+		"duration":"2 mois",
+		"shortDesc": "Application Android modifiant un fichier xml en fonction de sliders\nTout les détails sont présent dans le rapport de mon éxperience chez Windriver(catégorie 'Expériences').",
+		"skills": ["Java", "Android Studio", "Anglais", "Teamwork"],
+		"include": false,
+		"complexity": "5"
+	}, {
+		"id": "S4b",
+		"name": "Mise en place d'un serveur Web ",
+		"img":"./resources/rpi.jpg",
+		"date":"2016",
+		"duration":"4 mois",
+		"shortDesc": "Mise en place d'un serveur Web. De l'installation de l'OS (Jessie) à la configuration du serveur et de la connectivité de l'appareil en passant par la rédaction du site. Le projet fût conclu par des attaques aléatoires du professeur sur nos appareils.\n        Ce fût un projet passionant qui m'a beacuoup appris car nous devions tout faire seul, sans aucune documentation du professeur. Nos seules ressources étaitent Internet et notre réflexion.\n        J'en ai tiré une bonne notion de à quoi ressemblait la réalisation d'un projet à partir de rien dans un environnement nouveau.",
+		"skills": ["Unix", "Administration Réseaux Unix", "Html", "Php","Apache2","Raspbian"],
+		"include": true,
+		"complexity": "8"
+	}, {
+		"id": "weather",
+		"name": "Application Météo OpenWeather",
+		"img":"./resources/weather.png",
+		"date":"2016",
+		"duration":"6H",
+		"shortDesc": "Première approche de la notion de Framework par l'utilisation d'Express et la création d'une app météo.",
+		"skills": ["Html", "Css", "Javascript", "AngularJS","Materialize"],
+		"include": false,
+		"complexity": "2"
+	}, {
+		"id": "bmi",
+		"name": "Première approche de la notion de Framework : Calcul de Masse Corporelle",
+		"img":"./resources/bmi.png",
+		"date":"2016",
+		"duration":"2H",
+		"shortDesc": "Première approche de la notion de Framework par l'utilisation d'Express et la création d'une simple app de calcul de bmi.",
+		"skills": ["Html", "Css", "Javascript", "AngularJS","Materialize"],
+		"include": false,
+		"complexity": "2"
+	}],
+
+
+	"allSkills": {
+		"classes": {
+			"1_language": {"self":"1_language","name":"Langages (Programmation - Description)","color":"blue lighten-"},
+			"2_framework": {"self":"2_framework","name":"Frameworks - Librairies","color":"light-green lighten-"},
+			"3_toolEnv": {"self":"3_toolEnv","name":"Environnements - Outils","color":"orange lighten-"},
+			"4_misc": {"self":"4_misc","name":"Théorie & Non-Informatique","color":"lime lighten-"}
+		},"items":{
+			"C#":{"id":"Csharp","self" :"C#",
+			"familiarity": 7,
+			"color":"","class": "1_language"
+		},
+			"C":{"id":"C","self" :"C",
+			"familiarity": 8,
+			"color":"","class": "1_language"
+		},
+			"C++":{"id":"Cpp","self" :"C++",
+			"familiarity": 4,
+			"color":"","class": "1_language"
+		},
+			"Java":{"id":"Java","self" :"Java",
+			"familiarity": 7,
+			"color":"","class": "1_language"
+		},
+			"Python":{"id":"Python","self" :"Python",
+			"familiarity": 6,
+			"color":"","class": "1_language"
+		},
+			"Javascript":{"id":"Javascript","self" :"Javascript",
+			"familiarity": 7,
+			"color":"","class": "1_language"
+		},
+			"Php":{"id":"Php","self" :"Php",
+			"familiarity": 6,
+			"color":"","class": "1_language"
+		},
+			"ShellScript":{"id":"ShellScript","self" :"ShellScript",
+			"familiarity": 6,
+			"color":"","class": "1_language"
+		},
+			"Html":{"id":"Html","self" :"Html",
+			"familiarity": 8,
+			"color":"","class": "1_language"
+		},
+			"Css":{"id":"Css","self" :"Css",
+			"familiarity": 7,
+			"color":"","class": "1_language"
+		},
+			"PL-SQL":{"id":"PL-SQL","self" :"PL-SQL",
+			"familiarity": 3,
+			"color":"","class": "1_language"
+		},
+			"SQL":{"id":"SQL","self" :"SQL",
+			"familiarity": 4,
+			"color":"","class": "1_language"
+		},
+			"UML":{"id":"UML","self" :"UML",
+			"familiarity": 7,
+			"color":"","class": "4_misc"
+		},
+	"Unix":{"id":"Unix","self" :"Unix",
+			"familiarity": 9,
+			"color":"","class": "3_toolEnv"
+		},
+			"Administration Réseaux Unix":{"id":"NetwUnixAdmin","self" :"Administration Réseaux Unix",
+			"familiarity": 6,
+			"color":"","class": "3_toolEnv"
+		},
+			"Visual Studio":{"id":"Visual_Studio","self" :"Visual Studio",
+			"familiarity": 6,
+			"color":"","class": "3_toolEnv"
+		},
+			"Git":{"id":"Git","self" :"Git",
+			"familiarity": 6,
+			"color":"","class": "3_toolEnv"
+		},
+			"Windows":{"id":"Windows","self" :"Windows",
+			"familiarity": 8,
+			"color":"","class": "3_toolEnv"
+		},
+			"Apache2":{"id":"Apache2","self" :"Apache2",
+			"familiarity": 5,
+			"color":"","class": "3_toolEnv"
+		},
+			"MySql":{"id":"MySql","self" :"MySql",
+			"familiarity": 3,
+			"color":"","class": "3_toolEnv"
+		},
+			"Raspbian":{"id":"Raspbian","self" :"Raspbian",
+			"familiarity": 7,
+			"color":"","class": "3_toolEnv"
+		},
+			"Android Studio":{"id":"Android_Studio","self" :"Android Studio",
+			"familiarity": 5,
+			"color":"","class": "3_toolEnv"
+		},
+			"Oracle JDeveloper":{"id":"Oracle_JDeveloper","self" :"Oracle JDeveloper",
+			"familiarity": 5,
+			"color":"","class": "3_toolEnv"
+		},
+			"Bootstrap":{"id":"Boostrap","self" :"Bootstrap",
+			"familiarity": 5,
+			"color":"","class": "2_framework"
+		},
+			"P5js":{"id":"P5js","self" :"P5js",
+			"familiarity": 8,
+			"color":"","class": "2_framework"
+		},
+			"NodeJS":{"id":"NodeJS","self" :"NodeJS",
+			"familiarity": 7,
+			"color":"","class": "2_framework"
+		},
+			"Qt":{"id":"Qt","self" :"Qt",
+			"familiarity": 6,
+			"color":"","class": "2_framework"
+		},
+			"JQuery":{"id":"JQuery","self" :"JQuery",
+			"familiarity": 6,
+			"color":"","class": "2_framework"
+		},
+			"AngularJS":{"id":"AngularJS","self" :"AngularJS",
+			"familiarity": 7,
+			"color":"","class": "2_framework"
+		},
+			"Express":{"id":"Express","self" :"Express",
+			"familiarity": 6,
+			"color":"","class": "2_framework"
+		},
+			"Materialize":{"id":"Materialize","self" :"Materialize",
+			"familiarity": 7,
+			"color":"","class": "2_framework"
+		},
+			"Sequelize":{"id":"Sequelize","self" :"Sequelize",
+			"familiarity": 6,
+			"color":"","class": "2_framework"
+		},
+			"Economie de Base":{"id":"BasicEco","self" :"Economie de Base",
+			"familiarity": 4,
+			"color":"","class": "4_misc"
+		},
+			"Communication":{"id":"Communication","self" :"Communication",
+			"familiarity": 8,
+			"color":"","class": "4_misc"
+		},
+			"Anglais":{"id":"Anglais","self" :"Anglais",
+			"familiarity": 9,
+			"color":"","class": "4_misc"
+		},
+			"Programmation Orientée Objet":{"id":"Poo","self" :"Programmation Orientée Objet",
+			"familiarity": 8,
+			"color":"","class": "4_misc"
+		},
+			"Gestion de projet":{"id":"ProjGest","self" :"Gestion de projet",
+			"familiarity": 6,
+			"color":"","class": "4_misc"
+		},
+			"Bureautique":{"id":"Bureautique","self" :"Bureautique",
+			"familiarity": 7,
+			"color":"","class": "4_misc"
+		},
+			"Teamwork":{"id":"Teamwork","self" :"Teamwork",
+			"familiarity": 9,
+			"color":"","class": "4_misc"
+		},
+			"Électronique Basique":{"id":"BasicElec","self" :"Électronique Basique",
+			"familiarity": 4,
+			"color":"","class": "4_misc"
+		},
+			"Adaptabilité":{"id":"adapt","self" :"Adaptabilité",
+			"familiarity": 8,
+			"color":"","class": "4_misc"
+		},
+			"Réactivité":{"id":"reac","self" :"Réactivité",
+			"familiarity": 8,
+			"color":"","class": "4_misc"
+		},
+			"Optimisation":{"id":"opti","self" :"Optimisation",
+			"familiarity": 6,
+			"color":"","class": "4_misc"
+		}
+	}
+	}
+}

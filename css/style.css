@@ -1,0 +1,370 @@
+/* Custom Stylesheet */
+/**
+* Use this file to override Materialize files so you can update
+* the core Materialize files in the future
+*
+* Made By MaterializeCSS.com
+*/
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+pre, p{
+  white-space: pre-wrap;       /* css-3 */
+  line-height: inherit;
+  font: inherit;
+  font-size: : inherit;
+  font-weight: : inherit;
+  font-family: : inherit;
+  font-stretch: : inherit;
+  font-kerning: : inherit;
+  font-variant: : inherit;
+}
+
+pre{
+  padding: 0rem 1rem 0 1rem ;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  max-height: none;
+  height:100%;
+}
+
+li a img{
+    
+}
+
+main{
+  padding = 0;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+.chip{
+  background-color: ""
+}
+.chip-skill{
+  margin:0.2rem;
+  cursor: pointer;
+}
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+  width: 100%;
+}
+.unselectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+.little-padding{
+  padding: 0.4rem;
+}
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0px;
+}
+#disclaimer{
+  position:absolute;
+  margin-top: 0px;
+  width:100%;
+  font-weight: 500;
+  top: 1rem;
+  text-align: right;
+
+}
+.navBar{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  min-width: 8.5rem;
+  position:fixed;
+}
+.nav{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.underline{
+  text-decoration: underline;
+}
+.navItem{
+  padding:  1rem 0;
+  min-width: 8rem;
+  text-align: center;
+}
+main{
+  height: 90%;
+  padding-left: 20%;
+  margin-top: 3%;
+  z-index : 0;
+}
+.waves-effect{
+  width : 100%;
+}
+.dropdown-button{
+padding-right: 0;
+padding-left: 0;
+}
+.dropdown-button i{
+margin: 0;
+}
+.btns{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.btns:nth-child(0){
+  margin-right: 0.2rem;
+}
+.dropdown-content{
+  cursor:default;
+  border-radius: 0.5rem;
+}
+.contact-item{
+  padding : 1rem;
+  flex-direction: row;
+  display:flex;
+  text-align: center;
+  z-index: inherit;
+}
+.contact-item .material-icons{
+  flex-grow: 0.5;
+  margin-right: 1rem;
+  z-index: inherit;
+}
+.me{
+  text-align: center;
+  width 100%;
+}
+.row{
+  margin-bottom: 0px;
+}
+.no-padding-horizontal{
+  padding-right: 0%;
+  padding-left: 0%;
+}
+.no-padding-vertical{
+  padding-top: : 0%;
+  padding-bottom: : 0%;
+}
+.profile-pic {
+  width:80%;
+  height:80%;
+}
+.skill-class {
+  min-width: 10%;
+}
+.class-item {
+  border-radius: 0.2rem;
+  border : gray solid 1px;
+  width : 40%;
+}
+.class-item-text {
+  box-sizing: 0;
+  border-radius: 0.2rem;
+  font-size: 1.1rem;
+  padding: 0.2rem;
+  font-weight:400;
+  cursor: pointer;
+    /*text-shadow: 3px 3px 4px rgba(0,0,0,0.2);*/
+}
+.class-item .hover {
+  border-radius: 0.1rem;
+  border : gray solid 1px;
+  width : 40%;
+  transform: scale(1.1);
+}
+.skill-group {
+  width : 95%;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-left: solid gray 1px;
+  margin-bottom: 2%;
+  margin-left: 5%;
+  padding-bottom: 1rem;
+}
+.repeater{
+  display:flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.skill-item {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  text-align: center;
+  align-self: center;
+  border-radius: 0.3rem;
+  color : black;
+  text-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+  box-shadow: inset 0px 0px 0.1rem 0px hsl(0, 0%, 85%);
+  cursor: pointer;
+}
+.skill-item-more-off {
+  display:none;
+}
+.skill-item-text-more {
+  padding: 0.9rem 1.4rem 0.9rem 1.4rem;
+  background-color: rgba(0,0,0,0.2);
+  font-size: 1.05rem;
+  font-weight: 500;
+  box-shadow: 0rem 0rem 1rem 1px hsl(0, 0%, 80%);
+  cursor: pointer;
+}
+.skill-item-more {
+  padding-left: 0.4rem;
+  margin-left: 0.2rem;
+  border-left: grey solid 1px;
+  display:inline-block;
+  color: grey;
+}
+.linker{
+  height: 1px;
+  width: 1rem;
+  align-self: center;
+}
+
+.allExpProj{
+  display:flex;
+  flex-wrap: wrap;
+  flex-flow: wrap;
+}
+
+.allExpProj .card{
+  margin-right: 3rem;
+  flex-grow:1;
+  max-width: 20%;
+  min-width: 15rem;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 5;
+}
+
+.allExpProj .card > .card-reveal{
+  display : none;
+}
+
+.allExpProj .card .card-content .card-title{
+  font-size: 1.3rem;
+  line-height: normal;
+  text-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+  font-weight: 400;
+}
+
+.allExpProj .card .card-content {
+  padding: 0.7rem;
+}
+
+.allExpProj .card .card-content .light-text{
+  margin-top: 0.5rem;
+  text-align:justify;
+}
+.allExpProj .center{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1.5;
+}
+
+.allExpProj .card .cardcontent p{
+  margin-top: 0.5rem;
+}
+.bigger{
+  flex-grow:3 !important;
+  max-width: 50% !important;
+}
+.banner{
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  height: 10%;
+  max-width: 100%;/*
+  max-height: 7rem;
+  min-height: 5rem;*/
+  padding: 0px;
+  margin: 0px;
+}
+#whoami{
+  position:absolute;
+  left: inherit;
+  height: inherit;
+  padding: 2% 2rem 0px 2rem;
+  margin: 0px;
+  margin-left: 3rem;
+  background-color: rgba(255,255,255,0.6);
+  text-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+  font-weight: 500;
+}
+#quality{
+  position:absolute;
+  left: inherit;
+  height: inherit;
+  padding: 2% 2rem 0px 2rem;
+  margin: 0px;
+  margin-left: 30%;
+  background-color: rgba(255,255,255,0.7);
+  text-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+  font-weight: 500;
+}
+#obj{
+  position:absolute;
+  left: inherit;
+  height: inherit;
+  padding: 2% 2rem 0px 2rem;
+  margin: 0px;
+  margin-left: 55%;
+  background-color: rgba(255,255,255,0.7);
+  text-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+  font-weight: 500;
+}
+.pres{
+  font-size: 1.4rem;
+  text-align: justify;
+}
+.me .name{
+
+}

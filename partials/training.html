@@ -1,0 +1,26 @@
+<ul class="collapsible popout unselectable" data-collapsible="accordion">
+  <li ng-repeat="train in cv.allTrainings" >
+    <div class="collapsible-header no-padding-horizontal">
+      <div class="row">
+        <strong class="col bold blue lighten-5">{{train.date}}</strong>
+        <div class="col s10">{{train.name}}</div>
+        <div class="col">{{train.duration}}</div>
+      </div>
+    </div>
+    <div class="collapsible-body">
+      <pre class"text">{{train.description}}
+
+Effectué à {{train.location}}. <a ng-href="{{train.link}}" target="_blank">Site web</a></pre>
+      <div class="divider"></div>
+      <div class="row little-padding">
+        <div ng-repeat='skill in train.skills' ><a ng-href='#!/skills/{{cv.allSkills.items[skill].id}}' ><div class="chip col chip-skill " ng-class='cv.allSkills.items["{{skill}}"].color+4'>{{skill}}</div></a></div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<script>$(document).ready(function(){
+  $('.collapsible').collapsible();
+  $('.collapsible-header:first').click();
+});
+</script>

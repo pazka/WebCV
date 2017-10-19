@@ -1,0 +1,23 @@
+@font-face{
+	font-family: roboto;
+	src: url(font/Roboto/Roboto.ttf);
+}
+@font-face{
+	font-family: andale;
+	src: url(font/Andale-Mono/AndaleMono.ttf);
+}
+
+body {
+	margin:auto;
+	font-family:roboto;
+	font-size:95%;
+}
+h3
+{
+  text-align: right;
+background-color:rgb(110,150,250);
+}
+.code{
+font-family:andale;
+background-color:rgb(245,245,250);
+}

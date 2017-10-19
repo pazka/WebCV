@@ -1,0 +1,20 @@
+<ul>
+  <div id="{{skillclass.self}}" ng-repeat="skillclass in cv.allSkills.classes track by $index ">
+    <li  class=" class-item stretchRightNoBounce z-depth-2 " >
+      <div class="class-item-text {{skillclass.color}}4"   ng-click="expandAll(skillclass.self);">
+        {{skillclass.name}}
+      </div>
+    </li>
+    <div class="skill-group pullDown" >
+        <div ng-repeat="skill in cv.allSkills.items" ng-if="skill.class === skillclass.self " class=" repeater" ng-click="detail(skill.id);">
+          <div class="linker grey">
+          </div>
+          <a class="z-depth-2 skill-item {{skillclass.color}}5 " style="color:black" >
+            {{skill.self}}
+          <div id="{{skill.id}}" class="skill-item-more-off {{skillclass.color}}5 ">
+            Familiarité : {{skill.familiarity}}/10
+          </div>
+        </a>
+    </div>
+  </div>
+</ul>

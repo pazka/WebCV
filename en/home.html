@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>Alexandre Weisser</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+
+
+<body>
+  <div class="row">
+ <!-- NavBar -->
+  <div class="col s2" style="border-style: none solid none none; border-width: 1px">
+    <ul>
+       <li><img id="profile"  src="resources/picsmall.png"></li>
+         <li class="name">Alewandre Weisser</li>
+         <li class="email">contact@alexandreweisser.pro</li> <!-- TODO : contact -> opening box with email, and phone -->
+
+        <li><div class="divider"></div></li>
+          <div class="navItem"><li><a href="#!">Compétences</a></li></div>
+          <div class="navItem"><li><a href="#!">Expériences</a></li></div>
+          <div class="navItem" ><li><a href="#!">Projets</a></li></div>
+          <div class="navItem"><li><a href="#!">À propos</a></li></div>
+          <div class="navItem"><li><a href="#!">Ressources</a></li></div>
+     </ul>
+  </div>
+
+<!-- Content -->
+  <div class="col s10">
+    <main ng-app="CV" class = "container orange lighten-5"  ui-view> <!-- ui-view serves to indicate where to put the partial -->
+
+    </main>
+  </div>
+</div>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="../js/angular.min.js"></script>
+  <script src="../js/angular-ui-router.js"></script>
+  <script src="../js/init.js"></script>
+
+</body>
+</html>

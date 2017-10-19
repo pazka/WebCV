@@ -1,0 +1,32 @@
+
+<html>
+<head>
+  <title>Labyrinth Algorythms</title>
+  <meta charset='utf-8' />
+</head>
+<body>
+
+<h3>Here is the description of both execGen and execLab. They are to be executed as commands in Linux.</h3>
+
+<pre> execGen : Generate a labyrinth in file given the specified options :
+OPTIONS :
+  -l "largeur" // default 200
+  -h "hauteur" // default 300
+  -v           // display the generation of the lab /!\ VERY slow, 500*500 in 5-6 minutes with -p 1 /!\
+  -d           // display the generation with the constructible tiles in pink /!\ Slow /!\
+  -g           // the number of seeds to generate at the first step, MUST be less than height or length
+  -p "size"    // The size of the pixels displayed, 1 is the fastest, the other size are slowing the process.
+  "file"       // *Mandatory*, path of the file to generate
+
+</pre>
+<pre> execPath : Look in the specified lab file for a path :
+OPTIONS :
+  -v           // display the progression of the algorythm /!\slow down the process/!\
+  -f           // display the result of the algorythm, in green the tiles processed, in pink the final path.
+  -m           // default Random. The algorythm to use for the search : Random (slowest), 1 - dijkstra(unstable), 2-A*(best)
+  -p "size"    // The size of the pixels if displayed, 1 is the fastest, the other size are slowing the process.
+  "file"       // *Mandatory*, path of the file to go through.
+</pre>
+
+<a href="../../resources/lab.zip">Link to the source code and executable files</a>
+<a class="btn" href="../#!/projects">Retour</a>

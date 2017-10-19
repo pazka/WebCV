@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<html>
+<body>
+<h1> Compte-rendu d'installation </h1>
+
+<h3>Installation matérielle</h3>
+
+<pre>Téléchargement de raspbian wheezy
+Copie de l’image sur la carte SD
+Mise en place des périphériques (clavier, écran)
+Passage du clavier en français (internationnalisation > keyboard)
+Changement du mot de passe de pi
+Changement du hostname</pre>
+<pre class="code">sudo vim /etc/hostname </pre>
+<pre>Ajout de notre hostname et ceux autres dans</pre> <p style="font.weight=bold">/etc/hosts<p > <pre>:</pre>
+<pre class="code">
+127.0.1.1       rasp30.iutrs.unistra.fr
+10.0.8.30       rasp30.iutrs.unistra.fr
+2001:660:4703:f000::30 rasp30v6.iutrs.unistra.fr
+</pre>
+<pre>La première ligne sert à ce qu'on se reconnaisse, simplement. La deuxième est destiné
+aux autres utilisateurs du réseau
+</pre>
+<h3>Mise en place des interfaces</h3>
+
+<pre>Configuration statique de l’IP avec le fichier </pre> <p style="font-weight : bold;">/etc/network/interfaces<p> <pre> comme il suit : </pre>
+<pre class="code">
+	allow-hotplug eth0 :
+			iface eth0 inet static
+			address 10.0.8.30
+			gateway 10.0.8.254
+			netmask 255.255.255.0
+			dns-nameservers 130.79.200.200
+			dns-search unistra.fr iutrs.unistra.fr u-strasbg.fr psi.ad.unistra.fr
+</pre>
+
+<pre>On désactive le service dhcpcd car on ne veut qu'il touche à nos interfaces statiques </pre>
+<pre class="code">update-rc –f dhcpcd remove</pre>
+
+<pre> On peut donc ainsi se connecter à notre Pi en ssh, à l'ip configurée:
+	On peut se connecter avec ipv4 :</pre>
+	<pre class="code">ssh -p 2222 pi@10.8.0.30</pre>
+	On peut se connecter avec ipv6 :</pre>
+	<pre class="code">ssh -6 -p 2222 pi@2001:660:4703:f000::30</pre>
+
+<h3> Configuration du Pare-Feu</h3>
+<pre> On va pour cela , mettre en place 2 scripts :
+	Un qui suprime toutes les règles du pare-feu actuel et un qui va utiliser le
+	précédent script et établir les règles que l'on va lui dicter.
+	voici les deux scripts :
+</pre>
+<p style="font-weight : bold;"> RAZfirewall.sh </p>
+<pre class="code">#!/bin/sh
+
+#remise Ã  zero du pare-feu
+
+#IPV4
+
+#ouverture complete du pare-feu (flush) et rÃ©glage des politiques par dÃ©faut
+/sbin/iptables --flush
+#supression  des chaines utilisateur
+/sbin/iptables -X
+#politiques systeme
+/sbin/iptables -P INPUT ACCEPT
+/sbin/iptables -P OUTPUT ACCEPT
+
+#IPV6
+
+#ouverture complete du pare-feu (flush) et rÃ©glage des politiques par dÃ©faut
+/sbin/ip6tables --flush
+/sbin/ip6tables -X
+/sbin/ip6tables -P INPUT ACCEPT
+/sbin/ip6tables -P OUTPUT ACCEPT</pre>
+<p style="font-weight : bold;"> firewall.sh </p>
+<pre class="code">#!/bin/sh
+
+#remise Ã  zero
+./RAZfirewall.sh
+
+# On drop tout le trafic entrant.
+/sbin/iptables -P INPUT DROP
+# On drop tout le trafic sortant.
+/sbin/iptables -P OUTPUT DROP
+
+
+########  IPV4  #######
+
+#IN
+# toute connexion Ã©tablie peut resortir
+/sbin/iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+#ssh
+/sbin/iptables -A INPUT -p tcp --dport 2222 -j ACCEPT
+#apache
+/sbin/iptables -A INPUT -p tcp --dport 8888 -j ACCEPT
+/sbin/iptables -A INPUT -p tcp --dport 8443 -j ACCEPT
+# On autorise les pings
+/sbin/iptables -A INPUT -p icmp -j ACCEPT
+#X11
+/sbin/iptables -A INPUT -p tcp --dport 6011 -j ACCEPT
+#vnc
+/sbin/iptables -A INPUT -p tcp --dport 6001 -j ACCEPT
+/sbin/iptables -A INPUT -p tcp --dport 5801 -j ACCEPT
+/sbin/iptables -A INPUT -p tcp --dport 5901 -j ACCEPT
+#mosh
+/sbin/iptables -A INPUT -p udp --dport 60001 -j ACCEPT
+
+#OUT
+# ssh
+/sbin/iptables -A OUTPUT -p tcp --dport 2222 -j ACCEPT
+#web
+/sbin/iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+#https
+/sbin/iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+#dns
+/sbin/iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+#pings
+/sbin/iptables -A OUTPUT -p icmp -j ACCEPT
+/sbin/iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+#/sbin/iptables -A OUTPUT -p icmp -m conntrack --ctstate NEW,ESTABLISHED
+#X11
+/sbin/iptables -A OUTPUT -p tcp --dport 6011 -j ACCEPT
+#vnc
+/sbin/iptables -A OUTPUT -p tcp --dport 6001 -j ACCEPT
+/sbin/iptables -A OUTPUT -p tcp --dport 5801 -j ACCEPT
+/sbin/iptables -A OUTPUT -p tcp --dport 5901 -j ACCEPT
+#mosh
+/sbin/iptables -A OUTPUT -p udp --dport 60001 -j ACCEPT
+
+########  IPV6  #######
+
+#IN
+# toute connexion Ã©tablie peut resortir
+/sbin/ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+#ssh
+/sbin/ip6tables -A INPUT -p tcp --dport 2222 -j ACCEPT
+#apache
+/sbin/ip6tables -A INPUT -p tcp --dport 8888 -j ACCEPT
+/sbin/ip6tables -A INPUT -p tcp --dport 8443 -j ACCEPT
+# On autorise les pings
+/sbin/ip6tables -A INPUT -p icmpv6 -j ACCEPT
+#X11
+/sbin/ip6tables -A INPUT -p tcp --dport 6011 -j ACCEPT
+#vnc
+/sbin/ip6tables -A INPUT -p tcp --dport 6001 -j ACCEPT
+/sbin/ip6tables -A INPUT -p tcp --dport 5801 -j ACCEPT
+/sbin/ip6tables -A INPUT -p tcp --dport 5901 -j ACCEPT
+#mosh
+/sbin/ip6tables -A INPUT -p udp --dport 60001 -j ACCEPT
+
+#OUT
+# ssh
+/sbin/ip6tables -A OUTPUT -p tcp --dport 2222 -j ACCEPT
+#web
+/sbin/ip6tables -A OUTPUT -p tcp --dport 80 -j ACCEPT
+#https
+/sbin/ip6tables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+#dns
+/sbin/ip6tables -A OUTPUT -p udp --dport 53 -j ACCEPT
+#pings
+/sbin/ip6tables -A OUTPUT -p icmpv6 -j ACCEPT
+#tout ce qui entre Ã  le droit de resortir
+/sbin/ip6tables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+#/sbin/iptables -A OUTPUT -p icmp -m conntrack --ctstate NEW,ESTABLISHED
+#X11
+/sbin/ip6tables -A OUTPUT -p tcp --dport 6011 -j ACCEPT
+#vnc
+/sbin/ip6tables -A OUTPUT -p tcp --dport 6001 -j ACCEPT
+/sbin/ip6tables -A OUTPUT -p tcp --dport 5801 -j ACCEPT
+/sbin/ip6tables -A OUTPUT -p tcp --dport 5901 -j ACCEPT
+#mosh
+/sbin/ip6tables -A OUTPUT -p udp --dport 60001 -j ACCEPT
+
+###### LOG PACKET DROPPES ######
+
+/sbin/iptables -N LOGGING # creation d'une nouvelle chaine LOGGING
+/sbin/iptables -A INPUT -j LOGGING # les paquets passeront par la chaine crÃ©Ã©e
+/sbin/iptables -A OUTPUT -j LOGGING
+/sbin/iptables -A LOGGING -m limit --limit 50/min -j LOG --log-prefix "__IPTables-Dropped: " --log-level 4
+/sbin/iptables -A LOGGING -j DROP
+
+
+/sbin/ip6tables -N LOGGING # creation d'une nouvelle chaine LOGGING
+/sbin/ip6tables -A INPUT -j LOGGING # les paquets passeront par la chaine crÃ©Ã©e
+/sbin/ip6tables -A OUTPUT -j LOGGING
+/sbin/ip6tables -A LOGGING -m limit --limit 50/min -j LOG --log-prefix "__IPTables-Dropped: " --log-level 4
+/sbin/ip6tables -A LOGGING -j DROP</pre>
+
+<pre>
+Les script de configuration du parfeu sont fonctionnels, on peut donc les mettre dans /etc/rc.local
+</pre>
+
+<h2> Monitoring et Serveur</h2>
+<pre>On installe maintenant tcpdump pour le monitoring, et apache2 pour l'hebergement de notre futur website</pre>
+<pre class="code">
+sudo apt-get install tcpdump
+sudo apt-get install apache2 php5
+</pre>
+
+<pre>On veut vérifier les vulnérabilité de glibc
+Selon https://security-tracker.debian.org/tracker/CVE-2015-0235 :
+	2.13-38+deb7u8 n'est pas vulnérable
+ldd --version donne 	2.13-38+deb7u8
+</pre>
+
+
+<h2>Configuration du serveur web</h2>
+
+<pre>
+#nous avons une politique
++ de DROP qui empéche forcément les autre utilisateur d'accéder au site , sur le port 80
+# c'est déjà configuré avant , on y a pensé
+#maintenant on veut que hapache ne fasse des connection que sur 8888 pour la sécurité toussa
+
+Donc dans</pre> <p style="font-weight : bold;">/etc/apache2/sites-enabled/</p><pre> le seul fichier de base on chnage le port 80 pour 88888
+on change </pre><p style="font-weight : bold;">/etc/apache2/ports.conf</p> <pre>aussi
+Pour le SSL , on change, port 443 en 8443. Ne pas oublier de changer le pare-feu aussi
+Enfait c'est moche , il y a mieux à faire :
+https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts
+puis on lance :
+</pre>
+<pre class="code">
+sudo service apache2 start
+</pre>
+<pre>On peut modifer le site en modifiant la page index.html dans le dossier /var/www</pre>
+
+<h2>
+Authentification CAS
+</h2>
+http://ist.uwaterloo.ca/~mpatters/cas/user.html
+
+<pre>
+On active le module grace à
+
+<pre class="code">a2enmod auth_cas</pre>
+<pre> Dans le shell easy
+On veut l'authentification CAS :
+il nous faut installer le module
+apache2.conf module ajouter dans </pre>
+<p style="font-weight : bold;">libapache2-mod-auth-cas
+</p>
+<pre> et specifieer dans le fichier de conf :
+apache2.conf module ajouter dans :</pre>
+<p style="font-weight : bold;">
+apache2.conf
+</p>
+
+<pre class="code">
+	<IfModule mod_auth_cas.c>
+	                 CASVersion 2
+	                 CASDebug On
+	                 CASLoginURL https://cas.unistra.fr/cas/login
+	                 CASValidateURL https://cas.unistra.fr/cas/serviceValidate
+	                 #CASCookiePath /var/tmp/cas/
+	</IfModule>
+</pre>
+
+<pre>
+Dans sites-enabled, ajiuter une balise directory vers le dossier à identifier :
+allowOverride None -> AuthConfig
+auth_cas_module /usr/libexec/apache2/mot_auth_cas.so
+puis le </pre>
+<p style="font-weight : bold;">.htaccess</p>
+<pre class="code">
+AuthType Cas
+Require valid-user
+</pre>
+
+
+<pre>
+Mettre les autorisation dans .htaccess dans le dossier que l'on veut protéger.
+
+L'authentification ce fait mais il ne peut pas me renvoyer le site puisque le nom de domain n'est aps r�solu. Donc on fait une r�solution locale en modifiant sont fichier host
+
+bootstrap et highlight.js sont à installer pour avoir un joli site
+</pre>
+
+<h2>SSL</h2>
+
+<pre>
+On veut le SSL ( notre tube )
+
+parenthèse Fonctionnement de appache : tu met des truc dans sites available, tu les active avec a2ensite �a check si tout est correct et �a le met sites-enable.
+
+Pour cela on dit juste suer quoi écouter à apache dans ports.conf
+et on active ssl avec :
+</pre>
+
+<pre class="code">
+	 a2enmod ssl
+
+<IfMOdule mod_ssl.c>
+Listen 8443
+</IfMOdule mod_ssl.c>
+<IfModule mod_gnutls.c>
+listen 8443
+</IfModule mod_gnutls.c>
+
+</pre>
+
+<h2>X11</h2>
+
+<pre>
+	Rappel:
+X11 est un protocol pré-installer un peu partout qui permet l'affichage graphique. Et L'int�ret de l'uiliser avec ssh dans la commande connection ( avec l'option -X) permet des interface graphique � distance
+par exemple si l'on se connecte avec un parametre -X a notre pie et qu'on lance wireshark
+la fenetre s'affichera chez nous
+expliqué ici : http://www.vanemery.com/Linux/XoverSSH/X-over-SSH2.html
+
+v�rifier que X est déjà installé :
+</pre>
+<pre class="code">
+sudo apt-get install xauth
+</pre>
+
+<pre>
+et v�rifer que ssh l'autorise de base dans:</pre>
+<p style="font-weight : bold;">
+/etc/ssh/sshd_config</p>
+<pre>
+avec cette ligne : X11Forwarding yes sinon l'ajouter.
+et pour un user particulier :
+$ vi $HOME/.ssh/config file
+ajouter : ForwardX11 yes
+
+Ne pas oublier autoriser les port de X11  en inpute et ouput ipv4 et v6 dans notre script de pare feu
+car X11 est déjà installé dans la plus part des systemes.
+selon cette source : http://www.dslreports.com/forum/r9424755-What-ports-are-used-when-you-tunnel-X11-over-SSH
+les ports 6011
+
+POur tester on se connecte ( depuis windows ) en x et on lance xmessage
+NE marche aps avec putty , pas trouvé comment
+mais fonctionne avec windows
+</pre>
+
+<h2>VNC</h2>
+<pre>
+on met en place le serveur vnc sur le PI </pre>
+
+<pre class="code">
+sudo apt-get update
+sudo apt-get install tightvncserver
+</pre>
+
+<p style="font-weight : bold;">/usr/bin/tightvncserver</p>
+
+password viewonly : viewpi
+
+cela nous créer un nouveau X desktop : rasp30:1
+avec un script d'exec par defaul : /root/.vnc/xstartup
+et logfile : /root/.vnc/rasp30:1.log
+
+On n'oublie pas le firewall évidement http://www.cyberciti.biz/faq/linux-iptables-open-vncserver-port-6000-5800-5900/ :
+le port est défini par le display que l'on compte afficher,
+donc si l'on se connecte à diplay rasp30:1 , le port sera 5801,5901,6001
+
+<h2> TCPDUMP </h2>
+
+Deja on va juste log ce qu'on drop
+https://www.sans.org/media/security-training/mpa_install_linux.pdf
+ficher : /scripts/PF.sh rajouter � la fin
+
+##### LOG DE TOUS LES PACKETS DROPPES #####
+
+/sbin/iptables -N LOGGING # creation d'une nouvelle chaine
+/sbin/iptables -A INPUT -j LOGGING #on fait passer les packets par la chaine$
+/sbin/iptables -A OUTPUT -j LOGGING
+/sbin/iptables -A LOGGING -m limit --limit 50/min -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
+/sbin/iptables -A LOGGING -j DROP
+
+/sbin/ip6tables -N LOGGING # creation d'une nouvelle chaine
+/sbin/ip6tables -A INPUT -j LOGGING #on fait passer les packets par la chain$
+/sbin/ip6tables -A OUTPUT -j LOGGING
+/sbin/ip6tables -A LOGGING -m limit --limit 50/min -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
+/sbin/ip6tables -A LOGGING -j DROP
+le log se trouve dans /var/log/messages
+pour check un port : cat /var/log/messages | egrep "[DPT|SPT]=6([0-9]){3,4}
+
+
+<h2>MOSH</h2>
+
+https://mosh.mit.edu/#getting
+on ouvre juste les ports dans firewall.sh, comme d'hab, c'est pr� installé :#mosh
+/sbin/iptables -A INPUT -p udp --dport 60001 -j ACCEPT
+/sbin/iptables -A OUTPUT -p udp --dport 60001 -j ACCEPT
+/sbin/ip6tables -A INPUT -p udp --dport 60001 -j ACCEPT
+/sbin/ip6tables -A OUTPUT -p udp --dport 60001 -j ACCEPT
+Pour se connecter
+
+## protection DDos
+de simple regles à ajouter dans le firewall :
+
+<h2> Prévention Ddos </h2>
+
+<pre>Pour prévenir des attaques Ddos on ajoute les règles suivant dans le script firewall ( vu plus haut ) </pre>
+
+<pre class="code">
+/sbin/iptables -I INPUT -m hashlimit -m tcp -p tcp --dport 8888 --hashlimit-above 10/sec --hashlimit-mode srcip --hashlimit-name http -m state --state NEW -j DROP
+/sbin/ip6tables -I INPUT -m hashlimit -m tcp -p tcp --dport 8888 --hashlimit-above 10/sec --hashlimit-mode srcip --hashlimit-name http -m state --state NEW -j DROP
+
+/sbin/iptables -I INPUT -m hashlimit -m tcp -p tcp --dport 8443 --hashlimit-above 10/sec --hashlimit-mode srcip --hashlimit-name http -m state --state NEW -j DROP
+/sbin/ip6tables -I INPUT -m hashlimit -m tcp -p tcp --dport 8443 --hashlimit-above 10/sec --hashlimit-mode srcip --hashlimit-name http -m state --state NEW -j DROP
+</pre>
+<pre>
+Cette règle fait en sorte qu'une IP ne puisse faire plus de 10 requetes HTTP par seconde. Si cette limite est execdée, les packets seront simplement dropés. Source
+</pre>
+
+<h2> fail2ban </h2>
+
+Utilisation de fail2ban (petit tuto)
+
+<pre class="code">
+apt-get install fail2ban
+apt-get install sendmail # pour l'envoi d'alertes de sécurité par mail
+cd /etc/fail2ban
+cp jail.conf jail.local #copie du fichier de config
+</pre>
+
+fichier : /etc/fail2ban/jail.local modifiez ou rajoutez les options suivantes
+
+<pre class="code">
+[DEFAULT]
+
+# "ignoreip" can be an IP address, a CIDR mask or a DNS host
+ignoreip = 127.0.0.1/8
+#duree du ban en secondes
+bantime  = 600
+#nombre d'essais authorises avant le ban
+maxretry = 3
+#duree durant laquelle le compteur d'essais n'est pas réinitialisé
+findtime = 600
+#adresse email où envoyer les alertes de securité
+destmail = pierre.genthon@etu.unistra.fr
+#nom de l'auteur du mail d'alerte
+sendername = RASP11_Fail2Ban
+#pour supporter ipv6 également
+banaction = iptables46-multiport
+
+[ssh]
+
+enabled  = true
+port     = 2222
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 3
+
+[ssh-ddos]
+
+enabled  = true
+port     = ssh
+filter   = sshd-ddos
+logpath  = /var/log/auth.log
+maxretry = 3
+
+[apache]
+
+enabled  = true
+port     = 8888,8443
+filter   = apache-auth
+logpath  = /var/log/apache2/error.log
+maxretry = 3
+
+#stoppons les petits malins qui essayeraient de provoquer un bufferoverflow en envoyant des url super longues par exemple
+[apache-overflows]
+
+enabled  = true
+port     = 8888,8443
+filter   = apache-overflows
+logpath  = /var/log/apache2/error.log
+maxretry = 2
+
+[apache-badbots]
+
+enabled  = true
+port     = 8888,8443
+filter   = apache-badbots
+logpath  = /var/log/apache2/error.log
+maxretry = 2
+
+[php-url-fopen]
+
+enabled = true
+port    = 8888,8443
+filter  = php-url-fopen
+logpath = /var/log/apache2/access.log
+patchons le programme pour le support d'IPV6 (source)
+
+sudo su
+cd /root
+mkdir fail2ban-ipv6patch
+wget http://thanatos.trollprod.org/sousites/fail2banv6/fail2ban-ipv6.tar.bz2
+tar xjvf fail2ban-ipv6.tar.bz2 -C fail2ban-ipv6patch
+#backup des fichiers
+cp /usr/share/fail2ban/server/filter.py /usr/share/fail2ban/server/filter.py.sos
+cp /usr/share/fail2ban/server/failregex.py /usr/share/fail2ban/server/failregex.py.sos
+#application des patchs
+/usr/share/fail2ban/server# patch -p0 < /root/fail2ban-ipv6patch/patchfilter.patch
+/usr/share/fail2ban/server# patch -p0 < /root/fail2ban-ipv6patch/regex.patch
+
+cp /root/fail2ban-ipv6patch/ip64tables.sh /usr/bin/
+chmod 755 /usr/bin/ip64tables.sh
+cp /root/fail2ban-ipv6patch/iptables46-multiport.conf /etc/fail2ban/action.d/
+chmod 644 /etc/fail2ban/action.d/iptables46-multiport.conf
+redemmarez le service
+
+sudo service fail2ban restart
+pour voir les attaques bloqués par le programme :
+
+fail2ban-client status apache</pre>
+
+
+
+
+ <h2>Vérification des altérations </h2>
+
+
+
+ <pre>Nous avons ( en pi , pas en root ) une belle fausse erreur sur certaine commande comme ls :
+	 memoty fault: Core Dumped. Nous nous somme fait infiltré, il est temps d'aller voir ça:
+	 Pour vérifier les denrier fichier altérés, on peut utiliser cette commande : </pre>
+
+<pre class="code">find / -not -path "/sys*" -not -path "/dev*" -not -path "/proc*" -mmin -1440</pre>
+
+<pre>Quand on tape cette commande, on remarque que</pre>
+<pre class="code">	 /sbin/[init] </pre>
+<pre>a été modifié et si l'on regarde la date de modification avec : </pre>
+<pre class="code">stat /sbin/[init] </pre>
+<pre>on optient :</pre>
+<pre class="code">
+	 Fichier : « /sbin/[init] »
+   Taille : 6544        Blocs : 16         ES blocs : 4096   fichier
+Device : b302h/45826d   Inode : 63387       Liens : 1
+Accès : (0755/-rwxr-xr-x)  UID : (    0/    root)   GID : (    0/    root)
+Accès : 2015-05-07 01:31:40.976000000 +0200
+Modi. : 2016-03-14 18:16:13.553509169 +0100
+Chgt  : 2016-03-14 18:16:13.583509054 +0100
+Créé  : -
+</pre>
+<pre>Il est suspect que la date d'accès soit antérieur à la date même de création. </pre>
+<pre>...
+Après check et réflexion, c'est une FAUSSE ALERTE. Continuons notre exploration.</pre>
+<pre class="code">
+	apt-get install chkrootkit
+	cd /home/pi/Monitoring
+	chkrootkit >chkrootkit_15Mars15h.txt
+</pre>
+
+<pre>On va installer rkhunter, qui check pour des "backdoor", "rootkit" et autre malicieuseries
+source : https://www.digitalocean.com/community/tutorials/how-to-use-rkhunter-to-guard-against-rootkits-on-an-ubuntu-vps</pre>
+<pre class="code">apt-get install rkhunter
+sudo rkhunter -c --enable all --disable none</pre>
+
+<pre>Le log de rkhunter nous indique que : </pre>
+<pre class="code" >
+[15:27:46] Warning: WARNING! It is the users responsibility to ensure that when the '--propupd' option
+[15:27:50]   /usr/sbin/adduser                               [ Warning ]
+[15:27:50] Warning: The command '/usr/sbin/adduser' has been replaced by a script: /usr/sbin/adduser: Perl script, ASCII text executable
+[15:27:53]   /usr/sbin/ifstatus                              [ Warning ]
+[15:27:53] Warning: The command '/usr/sbin/ifstatus' has been replaced by a script: /usr/sbin/ifstatus: POSIX shell script, ASCII text executable
+[15:28:02]   /usr/bin/ldd                                    [ Warning ]
+[15:28:02] Warning: The command '/usr/bin/ldd' has been replaced by a script: /usr/bin/ldd: Bourne-Again shell script, ASCII text executable
+[15:28:31]   /bin/which                                      [ Warning ]
+[15:28:31] Warning: The command '/bin/which' has been replaced by a script: /bin/which: POSIX shell script, ASCII text executable
+[15:43:57]   Checking running processes for deleted files    [ Warning ]
+</pre>
+<pre>si l'on fait </pre>
+<pre class="code">cd /etc
+ls -ali </pre>
+
+<pre>on remarque qu'il y a 2 dossiers ".."</pre>
+
+<pre> Quelques check après , on remqur que l'on ne peut plus faire de TAB pour les racourcis : </pre>
+<pre class="code">r-bash: impossible de créer un fichier temporaire pour le « here-document » : Aucun espace disponible sur le périphérique</pre>
+<pre>Il semblerait pourtant que la carte soit ok ( 8 ou 16 Gio de libre ) </pre>
+<pre class="code">pi@rasp30 /var/www $ df -h
+Sys. fich.     Taille Util. Dispo Uti% Monté sur
+/dev/root        2,9G  2,8G     0 100% /
+devtmpfs         459M   36K  459M   1% /dev
+tmpfs             93M  228K   93M   1% /run
+tmpfs            5,0M     0  5,0M   0% /run/lock
+tmpfs            186M     0  186M   0% /run/shm
+/dev/mmcblk0p1    56M   20M   37M  36% /boot
+</pre>
+<pre>Il se pourrait que ce soit le résultat d'un BufferOverflow</pre>
+
+
+
+<pre> il est aisé de réparer nos petit "memoty fault" : </pre>
+<pre class="code" >sudo apt-get install --reinstall coreutils </pre>
+<pre> ATTENTION :  ceci va mettre à jour beaucoup d'autres fichiers que l'on surveillait. Il faut donc s'attendre à ne
+ plus pouvoir compter sur certaines commandes précédentes</pre>
+
+</body>
+</html>
